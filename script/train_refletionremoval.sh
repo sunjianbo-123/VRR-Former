@@ -1,0 +1,55 @@
+python3 train_reflectionremoval.py \
+                      --arch Uformer_B \
+                      --mode reflectionremoval \
+                      --dataset my_syn \
+                      --env _L1loss+0.1Percep+Edge+dualpath+test \
+                      --batch_size 32 \
+                      --gpu 0,1,2 \
+                      --patch_size 4 \
+                      --embed_dim 32 \
+                      --depths 2 2 4 6 \
+                      --depths_FFTblock 2 2 2 2 \
+                      --num_heads 2 4 4 8 \
+                      --win_size 8 \
+                      --token_mlp "g_ffn" \
+                      --attention_type "HiLo_attention" \
+                      --final_upsample "dual_upsample" \
+                      --upsample_style "dual_upsample" \
+                      --downsample_style "conv_downsample" \
+                      --train_ps 256 \
+                      --val_ps 256 \
+                      --nepoch 300 \
+                      --checkpoint 1 \
+                      --warmup \
+                      --train_dir /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/datasets/reflectionremoval/my_syn/train \
+                      --val_dir /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/datasets/reflectionremoval/my_syn/val \
+                      --pretrain_weights /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/logs/reflectionremoval/my_syn/Uformer_B_0706/models/model_latest.pth  \
+                      --save_dir /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/logs/
+
+
+
+python3 train_reflectionremoval.py \
+                      --arch Uformer_s4 \
+                      --mode reflectionremoval \
+                      --dataset my_syn \
+                      --env _L1loss+Percep+Edge \
+                      --batch_size 32 \
+                      --gpu 0,1,2 \
+                      --patch_size 4 \
+                      --embed_dim 32 \
+                      --depths 2 2 4 8 2 8 4 2 2 \
+                      --num_heads 2 2 4 8 16 8 4 2 2 \
+                      --win_size 8 \
+                      --token_mlp "g_ffn" \
+                      --attention_type "HiLo_attention" \
+                      --upsample_style "dual_upsample" \
+                      --downsample_style "conv_downsample" \
+                      --train_ps 256 \
+                      --val_ps 256 \
+                      --nepoch 3000 \
+                      --checkpoint 100 \
+                      --warmup \
+                      --train_dir /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/datasets/reflectionremoval/my_syn/train \
+                      --val_dir /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/datasets/reflectionremoval/my_syn/val \
+                      --pretrain_weights /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/logs/reflectionremoval/my_syn/Uformer_B_0706/models/model_latest.pth  \
+                      --save_dir /home/sunjianbo/PycharmProjects/MyProjects/ReflectionRemoval/Uformer-main/logs/
